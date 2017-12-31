@@ -19,6 +19,7 @@ import {MobxAngularModule} from "mobx-angular";
 import StoreModule from "../stores/module";
 import {LoginPage} from "../pages/login/login";
 
+
 @NgModule({
   declarations: [
     MyApp,

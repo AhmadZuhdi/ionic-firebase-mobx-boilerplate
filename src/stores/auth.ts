@@ -9,7 +9,9 @@ export default class AuthStore {
   @observable isLoading = false;
   @observable private token = '';
 
-  constructor(private fbAuth:AngularFireAuth) {
+  constructor(
+    private fbAuth:AngularFireAuth
+  ) {
     this.fbAuth.authState
       .map((user:firebase.User) => {
 

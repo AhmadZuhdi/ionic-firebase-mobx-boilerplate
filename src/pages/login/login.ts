@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import AppState from "../../stores/appstate";
 import {HomePage} from "../home/home";
 
@@ -17,10 +17,14 @@ import {HomePage} from "../home/home";
 })
 export class LoginPage {
 
+  private username = "admin@sperm.com";
+  private password = "admin123";
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public appState: AppState
+    public appState: AppState,
+    public loading: LoadingController
   ) {
   }
 
@@ -32,8 +36,12 @@ export class LoginPage {
 
     const {authStore} = this.appState;
 
-    authStore.login("admin@sperm.com", "admin123")
+    const loading = this.loading.create();
+    loading.present();
+
+    authStore.login(this.username, this.password)
       .then(res => {
+        loading.dismissAll();
         if (authStore.isLoggedIn) {
           this.navCtrl.setRoot(HomePage);
         }
